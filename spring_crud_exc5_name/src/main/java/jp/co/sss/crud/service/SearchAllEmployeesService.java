@@ -1,9 +1,16 @@
 package jp.co.sss.crud.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.sss.crud.bean.EmployeeBean;
+import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.repository.EmployeeRepository;
+import jp.co.sss.crud.util.BeanManager;
+
+
 
 /**
  * 全従業員検索サービスクラス。
@@ -23,7 +30,7 @@ public class SearchAllEmployeesService {
 	 */
 	//TODO ここに記述
 	@Autowired
-	EmployeeRepository employeerepository;
+	private EmployeeRepository repository;
 	/**
 	 * 全従業員情報を取得します。
 	 * 
@@ -33,5 +40,11 @@ public class SearchAllEmployeesService {
 	 * @return 全従業員のEmployeeBeanリスト（従業員ID昇順）。データが存在しない場合は空のリストを返却
 	 */
 	//TODO ここに記述
+	public List<EmployeeBean> execute() {
 
+		List<Employee> empList = repository.findAllByOrderByEmpId();
+		List<EmployeeBean> returnEmployeeBeans = BeanManager.copyEntityListToBeanList(empList);
+
+		return returnEmployeeBeans;
+	}
 }

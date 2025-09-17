@@ -36,9 +36,7 @@ public class ListController {
 	@RequestMapping(path = "/list", method = RequestMethod.GET)
 	public String findAll(Model model) {
 
-		List<EmployeeBean> allEmployeeList = null;
-		//TODO SearchAllEmployeesService完成後にコメントを外す
-		//		allEmployeeList = searchAllEmployeesService.execute();
+		List<EmployeeBean> allEmployeeList = searchAllEmployeesService.execute();
 
 		model.addAttribute("employees", allEmployeeList);
 		return "list/list";
@@ -55,7 +53,7 @@ public class ListController {
 	@RequestMapping(path = "/list/empName", method = RequestMethod.GET)
 	public String findByEmpName(String empName, Model model) {
 
-		List<EmployeeBean> searchByEmpNameList = null;
+		List<EmployeeBean> searchByEmpNameList = searchForEmployeesByEmpNameService.execute(empName);
 
 		//TODO SearchForEmployeesByEmpNameService完成後にコメントを外す
 		//		searchByEmpNameList = searchForEmployeesByEmpNameService.execute(empName);
@@ -75,7 +73,7 @@ public class ListController {
 	@RequestMapping(path = "/list/deptId", method = RequestMethod.GET)
 	public String findByDeptId(Integer deptId, Model model) {
 
-		List<EmployeeBean> searchByDepartmentList = null;
+		List<EmployeeBean> searchByDepartmentList = searchForEmployeesByDepartmentService.execute(deptId);
 
 		//TODO SearchForEmployeesByDepartmentService完成後にコメントを外す
 		//		searchByDepartmentList=searchForEmployeesByDepartmentService.execute(deptId);

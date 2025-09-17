@@ -3,7 +3,10 @@ package jp.co.sss.crud.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.sss.crud.bean.EmployeeBean;
+import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.repository.EmployeeRepository;
+import jp.co.sss.crud.util.BeanManager;
 
 /**
  * 従業員ID検索サービスクラス。
@@ -23,7 +26,7 @@ public class SearchForEmployeesByEmpIdService {
 	 */
 	//TODO ここに記述
 	@Autowired
-	EmployeeRepository employeerepository;
+	private EmployeeRepository repository;
 	/**
 	 * 指定された従業員IDの従業員情報を取得します。
 	 * 
@@ -34,5 +37,11 @@ public class SearchForEmployeesByEmpIdService {
 	 * @return 該当する従業員のEmployeeBean
 	 */
 	//TODO ここに記述
+	public EmployeeBean execute(Integer empId) {
 
+		Employee employee = repository.getReferenceById(empId);
+		EmployeeBean employeeBean = BeanManager.copyEntityToBean(employee);
+
+		return employeeBean;
+	}
 }

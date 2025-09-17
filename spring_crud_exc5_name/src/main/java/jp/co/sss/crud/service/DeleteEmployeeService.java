@@ -22,7 +22,7 @@ public class DeleteEmployeeService {
 	 */
 	//TODO ここに記述
 	@Autowired
-	EmployeeRepository employeerepository;
+	EmployeeRepository repository;
 
 	/**
 	 * 指定された従業員IDの従業員情報を削除メソッド。
@@ -31,5 +31,9 @@ public class DeleteEmployeeService {
 	 * @param forDeleteEmpId 削除対象の従業員ID
 	 */
 	//TODO ここに記述
+	public void execute(Integer forDeleteEmpId) {
 
+		repository.deleteById(forDeleteEmpId);
+
+	}
 }
