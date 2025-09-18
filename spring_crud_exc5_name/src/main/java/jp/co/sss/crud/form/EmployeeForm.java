@@ -14,7 +14,7 @@ public class EmployeeForm {
 
 	/** パスワード */
 	@NotBlank
-	@Pattern(regexp = "^[a-zA-Z0-9]{0,16}$")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]{0,16}$", message = "{Pattern.loginform.password}")
 	private String empPass;
 
 	/** 社員名 */
@@ -32,7 +32,7 @@ public class EmployeeForm {
 
 	/** 生年月日 */
 	@NotNull
-	@Past
+	@Past(message = "{Past.loginform.birthday}")
 	private Date birthday;
 
 	/** 権限 */
