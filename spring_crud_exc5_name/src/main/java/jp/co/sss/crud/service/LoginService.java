@@ -58,6 +58,7 @@ public class LoginService {
 		if (employee != null) {
 			EmployeeBean loginUser = BeanManager.copyEntityToBean(employee);
 			loginResultBean = LoginResultBean.succeedLogin(loginUser);
+			System.out.println(employee.getAuthority() + "権限");
 		} else {
 			loginResultBean = LoginResultBean.failLogin("社員ID、またはパスワードが間違っています。");
 		}

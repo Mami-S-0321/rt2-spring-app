@@ -9,32 +9,42 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jp.co.sss.crud.bean.EmployeeBean;
 
-@Component
 public class AccountCheckFilter extends HttpFilter {
 	@Override
 	public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		/*//リクエストURLを取得
+		//リクエストURLを取得
 		String requestURL = request.getRequestURI();
-		if (requestURL.indexOf("/html") != 1 ||
-				requestURL.indexOf("/css") != 1 ||
-				requestURL.indexOf("/img") != 1 ||
-				requestURL.indexOf("/js") != 1 ||
-				requestURL.endsWith("/") ||
-				requestURL.endsWith("/login")) {
+		if (requestURL.indexOf("/html/") != -1 ||
+				requestURL.indexOf("/css/") != -1 ||
+				requestURL.indexOf("/img/") != -1 ||
+				requestURL.indexOf("/js/") != -1) {
 			chain.doFilter(request, response);
-		} else {
+			return;
+		}
+		if (requestURL.endsWith("/regist/input") ||
+				requestURL.endsWith("/delete/check")) {
 			HttpSession session = request.getSession();
-			EmployeeBean userId = (EmployeeBean) session.getAttribute("loginUser");
-			if (userId == null) {
-				response.sendRedirect("/spring_crud");
-				return;
-			} else {
+			EmployeeBean FormAuthority = (EmployeeBean) session.getAttribute("loginUser");
+
+			if (FormAuthority.getAuthority() == 1 || FormAuthority ==null ) {
+				session.invalidate();
+				response.sendRedirect("/spring_crud/");
+				
+				
+			} else  {
 				chain.doFilter(request, response);
+				
+				
 			}
-		}*/
-		chain.doFilter(request, response);
+		
+		}else {
+			chain.doFilter(request, response);
+			
+		}
 	}
 
 }

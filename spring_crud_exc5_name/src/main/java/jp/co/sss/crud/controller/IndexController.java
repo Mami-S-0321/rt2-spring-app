@@ -33,11 +33,12 @@ public class IndexController {
 			return "index";
 		}
 		
-		//TODO LoginServiceが完成後にコメントを外す
+		
 		LoginResultBean loginResultBean = loginService.execute(loginForm);
 		
 		if (loginResultBean.isLogin()) {
 			session.setAttribute("loginUser", loginResultBean.getLoginUser());
+			
 			return "redirect:/list";
 		} else {
 			model.addAttribute("errMessage", loginResultBean.getErrorMsg());
