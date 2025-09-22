@@ -1,6 +1,11 @@
 ﻿@charset "UTF-8";
 
 /* ---- その他のスタイル調整用CSS ---- */
+.header_img{
+	height: 100%;
+	width:  100%;
+	
+}
 
 /* ---- 文字の色 ---- */
 body {

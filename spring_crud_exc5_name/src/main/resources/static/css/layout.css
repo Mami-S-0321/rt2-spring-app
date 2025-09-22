@@ -6,6 +6,8 @@
 body {
 	margin: 0;
 	padding: 0;
+	background-color: rgb(228, 240, 249);
+	
 }
 
 .content {
@@ -14,6 +16,8 @@ body {
 	justify-content:space-between;
 	width: 920px;
 	margin: 0px auto;
+	
+	
 }
 
 .login {
@@ -22,22 +26,33 @@ body {
 
 /* ---- ヘッダー ---- */
 header {
-	height: 60px;
+	height: 70px;
 	width: 100%;
-	background-color: #87CEEB;
-	padding-top: 10px;
+	background-color:  #87CEEB;
+	padding-top: 35px;
+	background-image: url(../img/社員管理システムheader画像2.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+	opacity: 0.5;
+
+	
 }
 
 header .title {
 	margin-left: 10px;
 	line-height: 45px;
-	font-size: 25pt;
+	font-size: 30pt;
+	color: rgb(255, 0, 0);
+	font-weight: bold;
+	text-shadow: 1px 2px 3px #808080;
 }
 
 header .user_info {
 	margin-right: 20px;
 	line-height: 45px;
 	text-align: right;
+	color: rgb(255, 0, 0);
 }
 
 header .user_info a {

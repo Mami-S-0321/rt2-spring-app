@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 </head>
+
 <body>
 <th:block id="header" th:fragment="layout-header">
 	<div class="content">
+<!--		<img class="header_img" th:src="@{/img/社員管理システムheader画像.jpg}">-->
 		<div class="title">社員管理システム</div>
 		<div th:if="${session.loginUser != null}" class="user_info">
 			ようこそ、
