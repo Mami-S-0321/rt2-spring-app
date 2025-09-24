@@ -2,6 +2,8 @@ package jp.co.sss.crud.form;
 
 import java.util.Date;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -10,6 +12,9 @@ import jakarta.validation.constraints.Size;
 
 public class EmployeeForm {
 	/** 社員ID */
+	@Max(value = 99999)
+	@Min(value = 1)
+	@NotNull
 	private Integer empId;
 
 	/** パスワード */

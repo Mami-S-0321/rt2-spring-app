@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.sss.crud.bean.EmployeeBean;
 import jp.co.sss.crud.service.SearchAllEmployeesService;
 import jp.co.sss.crud.service.SearchForEmployeesByDepartmentService;
+import jp.co.sss.crud.service.SearchForEmployeesByEmpIdService;
 import jp.co.sss.crud.service.SearchForEmployeesByEmpNameService;
 
 @Controller
@@ -25,6 +26,9 @@ public class ListController {
 
 	@Autowired
 	SearchForEmployeesByDepartmentService searchForEmployeesByDepartmentService;
+	
+	@Autowired
+	SearchForEmployeesByEmpIdService searchForEmployeesByEmpIdService;
 
 	/**
 	 * 社員情報を全件検索した結果を出力
@@ -54,10 +58,6 @@ public class ListController {
 	public String findByEmpName(String empName, Model model) {
 
 		List<EmployeeBean> searchByEmpNameList = searchForEmployeesByEmpNameService.execute(empName);
-
-		//TODO SearchForEmployeesByEmpNameService完成後にコメントを外す
-		//		searchByEmpNameList = searchForEmployeesByEmpNameService.execute(empName);
-
 		model.addAttribute("employees", searchByEmpNameList);
 		return "list/list";
 	}
@@ -74,11 +74,25 @@ public class ListController {
 	public String findByDeptId(Integer deptId, Model model) {
 
 		List<EmployeeBean> searchByDepartmentList = searchForEmployeesByDepartmentService.execute(deptId);
-
-		//TODO SearchForEmployeesByDepartmentService完成後にコメントを外す
-		//		searchByDepartmentList=searchForEmployeesByDepartmentService.execute(deptId);
-
 		model.addAttribute("employees", searchByDepartmentList);
+		return "list/list";
+	}
+	
+	/**
+	 * 社員情報を社員ID検索した結果を出力
+	 *
+	 * @param empId 検索対象の社員ID
+	 * @param model モデル
+	 * @return 選先のビュー
+	 * @throws ParseException 
+	 */
+	
+	@RequestMapping(path = "/list/empId", method = RequestMethod.GET)
+	public String findByEmpId(Integer empId,Model model) {
+
+		EmployeeBean emp= searchForEmployeesByEmpIdService.execute(empId);
+
+		model.addAttribute("employees", emp);
 		return "list/list";
 	}
 }
