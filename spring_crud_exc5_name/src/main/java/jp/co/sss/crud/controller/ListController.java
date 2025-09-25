@@ -26,7 +26,7 @@ public class ListController {
 
 	@Autowired
 	SearchForEmployeesByDepartmentService searchForEmployeesByDepartmentService;
-	
+
 	@Autowired
 	SearchForEmployeesByEmpIdService searchForEmployeesByEmpIdService;
 
@@ -59,6 +59,7 @@ public class ListController {
 
 		List<EmployeeBean> searchByEmpNameList = searchForEmployeesByEmpNameService.execute(empName);
 		model.addAttribute("employees", searchByEmpNameList);
+		model.addAttribute("empName", empName);//検索欄に入力した値を残す記述
 		return "list/list";
 	}
 
@@ -75,9 +76,10 @@ public class ListController {
 
 		List<EmployeeBean> searchByDepartmentList = searchForEmployeesByDepartmentService.execute(deptId);
 		model.addAttribute("employees", searchByDepartmentList);
+		model.addAttribute("selectedDeptId", deptId);//検索欄で指定した値を残す記述
 		return "list/list";
 	}
-	
+
 	/**
 	 * 社員情報を社員ID検索した結果を出力
 	 *
@@ -86,13 +88,17 @@ public class ListController {
 	 * @return 選先のビュー
 	 * @throws ParseException 
 	 */
-	
+
 	@RequestMapping(path = "/list/empId", method = RequestMethod.GET)
-	public String findByEmpId(Integer empId,Model model) {
-
-		EmployeeBean emp= searchForEmployeesByEmpIdService.execute(empId);
-
-		model.addAttribute("employees", emp);
-		return "list/list";
+	public String findByEmpId(Integer empId, Model model) {
+		
+		if (empId == null) {
+			return "redirect:/list";
+		} else {
+			EmployeeBean emp = searchForEmployeesByEmpIdService.execute(empId);
+			model.addAttribute("employees", emp);
+			model.addAttribute("empId", empId);//検索欄に入力した値を残す記述
+			return "list/list";
+		}
 	}
 }

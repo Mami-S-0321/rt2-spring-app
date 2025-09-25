@@ -46,7 +46,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer>{
 	 * @param empId
 	 * @return 検索後のリスト
 	 */
-	List<Employee> findByEmpId(Integer empId);
+	Employee findByEmpId(Integer empId);
 
 
 }

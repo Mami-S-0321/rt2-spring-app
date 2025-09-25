@@ -27,6 +27,7 @@ public class SearchForEmployeesByEmpIdService {
 	//TODO ここに記述
 	@Autowired
 	private EmployeeRepository repository;
+
 	/**
 	 * 指定された従業員IDの従業員情報を取得します。
 	 * 
@@ -39,9 +40,13 @@ public class SearchForEmployeesByEmpIdService {
 	//TODO ここに記述
 	public EmployeeBean execute(Integer empId) {
 
-		Employee employee = repository.getReferenceById(empId);
-		EmployeeBean employeeBean = BeanManager.copyEntityToBean(employee);
+		Employee employee = repository.findByEmpId(empId);
+		if (employee == null) {
+			return null;
+		} else {
+			EmployeeBean employeeBean = BeanManager.copyEntityToBean(employee);
 
-		return employeeBean;
+			return employeeBean;
+		}
 	}
 }
