@@ -2,8 +2,6 @@ package jp.co.sss.crud.form;
 
 import java.util.Date;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -12,14 +10,11 @@ import jakarta.validation.constraints.Size;
 
 public class EmployeeForm {
 	/** 社員ID */
-	@Max(value = 99999)
-	@Min(value = 1)
-	@NotNull
 	private Integer empId;
 
 	/** パスワード */
 	@NotBlank
-	@Pattern(regexp = "^[a-zA-Z0-9 ]{0,16}$", message = "{Pattern.loginform.password}")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]{0,16}$", message = "{Pattern.EmployeeForm.password}")
 	private String empPass;
 
 	/** 社員名 */
@@ -37,7 +32,7 @@ public class EmployeeForm {
 
 	/** 生年月日 */
 	@NotNull
-	@Past(message = "{Past.loginform.birthday}")
+	@Past
 	private Date birthday;
 
 	/** 権限 */
