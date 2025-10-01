@@ -88,7 +88,9 @@ public class ListController {
 	 * @return 選先のビュー
 	 * @throws ParseException 
 	 */
-
+	
+	//String型とint型の箱を用意してあげる
+			//isEmpty()は空文字かどうかを判定するメソッド
 	@RequestMapping(path = "/list/empId", method = RequestMethod.GET)
 	public String findByEmpId(String strEmpId, Model model) {
 		Integer empId;
